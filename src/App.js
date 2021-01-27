@@ -1,25 +1,67 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import axios from 'axios';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      users:[]
+    }
+  }
+  
+
+  componentDidMount(){
+    
+    axios.get('https://randomuser.me/api/?results=100')
+
+      .then((response) => {
+        // handle success
+        this.setState({
+          users:response.data.results
+        })
+        console.log(this.state);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        {/* <table>
+      
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Location</th>
+          </tr>
+          {this.state.users.map(user =>(
+            <tr>
+              <td>{user.name.first} {user.name.last}</td>
+              <td>{user.email}</td>
+              <td>{user.location.country}</td>
+            </tr>
+          
+          )) }
+        </table> */}
+        {/* <ul> */}
+        {this.state.users.map(user =>(
+            // <li>
+            <ul>
+              <li>{user.name.first} {user.name.last}</li>
+              <li>{user.email}</li>
+              <li>{user.location.country}</li>
+            </ul>
+          // </li>
+          
+          )) }
+        {/* </ul> */}
+      </div>
+    );
+  }
 }
 
 export default App;
