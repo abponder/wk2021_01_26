@@ -10,10 +10,26 @@ class App extends React.Component {
     }
   }
   
+  // testMethod(){
+  //   console.log('testing')
+  // axios.get('https://randomuser.me/api/?results=100')
+
+  //     .then((response) => {
+  //       // handle success
+  //       this.setState({
+  //         users:response.data.results
+  //       })
+  //       console.log(this.state);
+  //   })
+  //   .catch(function (error) {
+  //     // handle error
+  //     console.log(error);
+  //   })
+  // }
 
   componentDidMount(){
     
-    axios.get('https://randomuser.me/api/?results=100')
+    axios.get('https://randomuser.me/api/?results=10')
 
       .then((response) => {
         // handle success
@@ -29,6 +45,11 @@ class App extends React.Component {
   }
 
   render() {
+    // console.log(this.state)
+    // if (!this.state.users.length){
+    //  this.testMethod()
+    // }
+    
     return (
       <div>
         {/* <table>
